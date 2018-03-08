@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>simple crystal game</title>
+  <title>Rikki's Crystal Game</title>
   
   <style type="text/css">
 
@@ -9,33 +9,43 @@
       width: 300px;
       height: 300px;
     }
+
+   /* // 04-jquery/02-Homework/Images/1-CrystalCollector.jpg */
   </style>
 
 </head>
 <body>
 
   <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+  
 
   <!-- Note that this div is now empty. We will fill it dynamically -->
   <div id="crystals">
   </div>
-
+  <img src="assets/images/crystals1.jpeg"></img>
+  <img src="assets/images/crystals2.jpeg"></img>
+  <img src="assets/images/crystals3.jpeg"></img>
+  <img src="assets/images/crystals4.jpeg"></img>
+  <div id="YourScore"></div>
+  <div id="YourScore2"></div>
   <!-- JAVASCRIPT  -->
   <!-- ========================================= -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <script type="/Users/rikki/Desktop/week-4-game/game.js"></script>
   <script type="text/javascript">
 
-  var targetNumber = 53;
+  const starting = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+};
 
-  $("#number-to-guess").text(targetNumber);
+  $("#number-to-guess").text(starting);
 
   var counter = 0;
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
   // We begin by expanding our array to include four options.
-  var numberOptions = [10, 5, 3, 7];
+  var numberOptions = [cryst1, cryst2, cryst3, cryst4];
 
   // Next we create a for loop to create crystals for every numberOption.
   for (var i = 0; i < numberOptions.length; i++) {
