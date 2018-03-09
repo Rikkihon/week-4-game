@@ -64,7 +64,21 @@ const cryst4 = function getRandomInt(min, max) {
     // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
     // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
     // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-    
+ 
+    //I need to change the variables here
+const clear = function () {
+                cryst1 = "";
+                cryst2= "";
+                cryst3 = "";
+                cryst4 = "";
+                result = "";
+                counter = 0;
+                //I know I won't want this to be wins and losses as empty
+                $('#wins').empty();
+                $('#losses').empty();
+
+           }
+
     var crystalValue = ($(this).attr("data-crystalvalue")); //This doesn't work because I am not searching for it any longer 
     crystalValue = parseInt(crystalValue);
     // We then add the crystalValue to the user's "counter" which is a global variable.
