@@ -22,12 +22,14 @@
   <!-- Note that this div is now empty. We will fill it dynamically -->
   <div id="crystals">
   </div>
-  <img src="assets/images/crystals1.jpeg"></img>
-  <img src="assets/images/crystals2.jpeg"></img>
-  <img src="assets/images/crystals3.jpeg"></img>
-  <img src="assets/images/crystals4.jpeg"></img>
-  <div id="YourScore"></div>
-  <div id="YourScore2"></div>
+  <img class="crystal-image" src="assets/images/crystals.jpeg" alt = "data-crystalvalue"> </img>
+  <img class="crystal-image" src="assets/images/Crystals2.jpeg" alt = "data-crystalvalue"></img>
+  <img class="crystal-image" src="assets/images/crystals3.jpeg" alt = "data-crystalvalue"></img>
+  <img class="crystal-image" src="assets/images/crystals4.jpeg" alt = "data-crystalvalue"></img>
+  <div id="YourScore">Your Score</div>
+  <div id="YourScore2">Your score goes here</div>
+  <div id="wins">Wins:</div>
+  <div id="losses">Losses</div>
   <!-- JAVASCRIPT  -->
   <!-- ========================================= -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -40,33 +42,20 @@
 
   $("#number-to-guess").text(starting);
 
+const cryst1 = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
+  };
+const cryst2 = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
+  };
+const cryst3 = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
+    };
+const cryst4 = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
+};
   var counter = 0;
-
-  // Now for the hard part. Creating multiple crystals each with their own unique number value.
-
-  // We begin by expanding our array to include four options.
   var numberOptions = [cryst1, cryst2, cryst3, cryst4];
-
-  // Next we create a for loop to create crystals for every numberOption.
-  for (var i = 0; i < numberOptions.length; i++) {
-
-    // For each iteration, we will create an imageCrystal
-    var imageCrystal = $("<img>");
-
-    // First each crystal will be given the class ".crystal-image".
-    // This will allow the CSS to take effect.
-    imageCrystal.addClass("crystal-image");
-
-    // Each imageCrystal will be given a src link to the crystal image
-    imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
-
-    // Each imageCrystal will be given a data attribute called data-crystalValue.
-    // This data attribute will be set equal to the array value.
-    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
-    // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-    $("#crystals").append(imageCrystal);
-  }
 
   // This time, our click event applies to every single crystal on the page. Not just one.
   $(".crystal-image").on("click", function() {
@@ -76,7 +65,7 @@
     // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
     // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
     
-    var crystalValue = ($(this).attr("data-crystalvalue"));
+    var crystalValue = ($(this).attr("data-crystalvalue")); //This doesn't work because I am not searching for it any longer 
     crystalValue = parseInt(crystalValue);
     // We then add the crystalValue to the user's "counter" which is a global variable.
     // Every click, from every crystal adds to the global counter.
@@ -87,10 +76,14 @@
 
     if (counter === targetNumber) {
       alert("You win!");
+      $("wins").text(wins);
+//Then apply the clear function 
     }
 
     else if (counter >= targetNumber) {
       alert("You lose!!");
+      $("losses").text(losses);
+      //Then apply the clear function 
     }
 
   });

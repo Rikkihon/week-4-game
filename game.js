@@ -1,6 +1,6 @@
 `use strict`
 const yourScore; 
-const starting = function getRandomInt(min, max) {
+const numberToGuess = function getRandomInt(min, max) {
     return Math.floor(Math.random() * (120 - 19 + 1)) + 19;
 }
 
@@ -29,29 +29,36 @@ $( "YourScore2" )
 
 //wins declared here
 
-if (yourScore === starting) {
+if (yourScore === numberToGuess) {
     wins = true;
     wins ++;
-    //print wins out using jquery
+    alert("You win!");
+    text(wins);
 }
+
 else if (yourscore > starting) {
    losses = true;
    losses ++;
-   //print out losses using jquery
+   alert("You lose!!");
+   text(losses);
 }
 
 
 $( "#crystal1" ).click(function() {
     alert( "Handler for .click() called." );
+    alert("New score: " + counter);
   });
   $( "#crystal2" ).click(function() {
     alert( "Handler for .click() called." );
+    alert("New score: " + counter);
   });
   $( "#crystal3" ).click(function() {
     alert( "Handler for .click() called." );
+    alert("New score: " + counter);
   });
   $( "#crystal4" ).click(function() {
     alert( "Handler for .click() called." );
+    alert("New score: " + counter);
   });
 
 // The random number shown at the start of the game should be between 19 - 120.
