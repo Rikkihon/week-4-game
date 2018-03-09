@@ -17,56 +17,35 @@
 <body>
 
   <h1>Number to Guess: <span id="number-to-guess"></span></h1>
-  
+  <p>4 Magic Crystals will appear on this page. Click each one to reveal their hidden numbers. 
+    You must click the numbers to achieve the final score displayed on the page. 
+    If your number matches, you will win. 
+    If it goes over, you will lose. 
 
-  <!-- Note that this div is now empty. We will fill it dynamically -->
-  <div id="crystals">
-  </div>
-  <img class="crystal-image" src="assets/images/crystals.jpeg" alt = "data-crystalvalue"> </img>
-  <img class="crystal-image" src="assets/images/Crystals2.jpeg" alt = "data-crystalvalue"></img>
-  <img class="crystal-image" src="assets/images/crystals3.jpeg" alt = "data-crystalvalue"></img>
-  <img class="crystal-image" src="assets/images/crystals4.jpeg" alt = "data-crystalvalue"></img>
-  <div id="YourScore">Your Score</div>
-  <div id="YourScore2">Your score goes here</div>
+  </p>
+  <div id="Counter">Your Count goes her</div>
   <div id="wins">Wins:</div>
   <div id="losses">Losses</div>
-  <!-- JAVASCRIPT  -->
-  <!-- ========================================= -->
+
+  <div id="crystals">
+  </div>
+  <img class="crystal-image" id="cryst1" src="assets/images/crystals.jpeg"  alt= "crystal" data-crystalvalue = "1"> </img>
+  <img class="crystal-image" id="cryst2"src="assets/images/Crystals2.jpeg" alt= "crystal" data-crystalvalue = "2"></img>
+  <img class="crystal-image" id="cryst3" src="assets/images/crystals3.jpeg" alt= "crystal" data-crystalvalue = "3"></img>
+  <img class="crystal-image" id="cryst4" src="assets/images/crystals4.jpeg" alt= "crystal"  data-crystalvalue = "4"></img>
+  <div id="YourScore">Your Score</div>
+  <div id="wins">Wins:</div>
+  <div id="losses">Losses</div>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="/Users/rikki/Desktop/week-4-game/game.js"></script>
   <script type="text/javascript">
 
-  const starting = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+   function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-  $("#number-to-guess").text(starting);
-
-const cryst1 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-  };
-const cryst2 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-  };
-const cryst3 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-    };
-const cryst4 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-};
-  var counter = 0;
-  var numberOptions = [cryst1, cryst2, cryst3, cryst4];
-
-  // This time, our click event applies to every single crystal on the page. Not just one.
-  $(".crystal-image").on("click", function() {
-
-    // Determining the crystal's value requires us to extract the value from the data attribute.
-    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
- 
-    //I need to change the variables here
-const clear = function () {
+ const clear = function () {
                 cryst1 = "";
                 cryst2= "";
                 cryst3 = "";
@@ -74,34 +53,73 @@ const clear = function () {
                 result = "";
                 counter = 0;
                 //I know I won't want this to be wins and losses as empty
-                $('#wins').empty();
-                $('#losses').empty();
+                $('#starting-number').empty();
+    };
+ const starting = getRandomInt(120, 19);
+  console.log(starting);
+  $("#number-to-guess").text(starting);
+  
+  const cryst = function getRandomInt(min, max) {
+  console.log(cryst);
+    return Math.floor(Math.random() * (max- min + min)) + 1;
+    
+  };
+  var counter = 0;
+  var cryst1, cryst2, cryst3, cryst4 = 0;
+  cryst1 = cryst(1,12);
+  cryst2 = cryst(1,12);
+  cryst3 = cryst(1,12);
+  cryst4 = cryst(1,12);
 
-           }
+  var numberOptions = [cryst1, cryst2, cryst3, cryst4];
+  console.log(numberOptions)
+  //this assigns the numbers from the crystals to the HTML element using jquery
+    $(`#cryst1`).attr("data-crystalvalue", cryst1);
+    $(`#cryst2`).attr("data-crystalvalue", cryst2);
+    $(`#cryst3`).attr("data-crystalvalue", cryst3);
+    $(`#cryst4`).attr("data-crystalvalue", cryst4);
+  // This time, our click event applies to every single crystal on the page. Not just one.
+  $(".crystal-image").on("click", function() {
 
-    var crystalValue = ($(this).attr("data-crystalvalue")); //This doesn't work because I am not searching for it any longer 
-    crystalValue = parseInt(crystalValue);
+    var crystalValue = $(this).attr("data-crystalvalue"); 
+    console.log(crystalValue);
     // We then add the crystalValue to the user's "counter" which is a global variable.
     // Every click, from every crystal adds to the global counter.
-    counter += crystalValue;
+     counter += parseInt(crystalValue);
 
     // All of the same game win-lose logic applies. So the rest remains unchanged.
-    alert("New score: " + counter);
-
-    if (counter === targetNumber) {
+     $("#Counter").text(counter);
+// if (counter < starting){
+//      $("wins").text("You Could Win Now!");
+     if (counter === starting) {
       alert("You win!");
-      $("wins").text(wins);
-//Then apply the clear function 
-    }
-
-    else if (counter >= targetNumber) {
+      wins ++
+      $("#wins").text(wins, "You just won");// might have to parse Int here 
+      clear();
+    } else (counter >= starting) {
+      $("losses").text("You Lose, please play again");
       alert("You lose!!");
-      $("losses").text(losses);
-      //Then apply the clear function 
+     clear();
     }
+}
+    const clear = function () {
+                cryst1 = "";
+                cryst2= "";
+                cryst3 = "";
+                cryst4 = "";
+                result = "";
+                counter = 0;
+                //I know I won't want this to be wins and losses as empty
+                $('#starting-number').empty();
+                $('#wins').text("You Win!");
+                $('#losses').text("You've Lost!");
+                
 
+           };
   });
 
   </script>
 </body>
 </html>
+
+ 

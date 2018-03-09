@@ -1,26 +1,7 @@
 `use strict`
-const yourScore; 
-const numberToGuess = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (120 - 19 + 1)) + 19;
-}
-
 //need to write a loop to start the game 
 //need to sum it in the game
-//need to clear it 
-
-const cryst1 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-}
-const cryst2 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-}
-
-const cryst3 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-}
-const cryst4 = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (12- 1 + 1)) + 1;
-}
+//need to clear it
 
 $( "YourScore" ).html( "Your Score Is " );
 $( "YourScore2" )
@@ -29,7 +10,7 @@ $( "YourScore2" )
 
 //wins declared here
 
-if (yourScore === numberToGuess) {
+if (yourScore === starting) {
     wins = true;
     wins ++;
     alert("You win!");
@@ -45,19 +26,18 @@ else if (yourscore > starting) {
 
 
 $( "#crystal1" ).click(function() {
-    alert( "Handler for .click() called." );
+    
     alert("New score: " + counter);
   });
   $( "#crystal2" ).click(function() {
-    alert( "Handler for .click() called." );
+ 
     alert("New score: " + counter);
   });
   $( "#crystal3" ).click(function() {
-    alert( "Handler for .click() called." );
+   
     alert("New score: " + counter);
   });
   $( "#crystal4" ).click(function() {
-    alert( "Handler for .click() called." );
     alert("New score: " + counter);
   });
 
